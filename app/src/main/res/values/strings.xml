@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ShoppingList</string>
+    <string name="activity2_name">SecondActivity</string>
+    <string name="fab_label">Add to list</string>
+</resources>
