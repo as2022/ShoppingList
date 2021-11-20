@@ -39,9 +39,9 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onPositionClicked(int mPosition) {
                 String commonItem = mCommonList.get(mPosition);
-                Intent replyIntent = new Intent();
-                replyIntent.putExtra(COMMON_ITEM, commonItem);
-                setResult(RESULT_OK, replyIntent);
+                Intent returnIntent = new Intent();
+                returnIntent.putExtra(COMMON_ITEM, commonItem);
+                setResult(RESULT_OK, returnIntent);
                 Log.d(LOG_TAG, "End SecondActivity");
                 finish();
             }
