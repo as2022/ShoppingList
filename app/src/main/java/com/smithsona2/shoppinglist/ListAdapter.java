@@ -53,11 +53,11 @@ public class ListAdapter extends
         if(parent.getContext().getClass().getSimpleName().equals("MainActivity")){
             resource = R.layout.grocery_list_item;
             mItemView = mInflater.inflate(resource, parent, false);
-            return new GroceryViewHolder(mItemView, this);
+            return new GroceryViewHolder(mItemView);
         }else {
             resource = R.layout.common_list_item;
             mItemView = mInflater.inflate(resource, parent, false);
-            return new CommonViewHolder(mItemView, this, listener);
+            return new CommonViewHolder(mItemView, listener);
         }
    }
 
@@ -87,12 +87,10 @@ public class ListAdapter extends
     class GroceryViewHolder extends RecyclerView.ViewHolder {
 
         public final TextView groceryItemView;
-        final ListAdapter mAdapter;
 
-        public GroceryViewHolder(View itemView, ListAdapter adapter) {
+        public GroceryViewHolder(View itemView) {
             super(itemView);
             groceryItemView = itemView.findViewById(R.id.grocery);
-            this.mAdapter = adapter;
         }
     }
 
@@ -102,31 +100,23 @@ public class ListAdapter extends
     class CommonViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public final Button commonItemView;
-        final ListAdapter mAdapter;
         private WeakReference<ClickListener> listenerRef;
 
-        public CommonViewHolder(View itemView, ListAdapter adapter, ClickListener listener) {
+        public CommonViewHolder(View itemView, ClickListener listener) {
             super(itemView);
-            commonItemView = itemView.findViewById(R.id.common);
             listenerRef = new WeakReference<>(listener);
-            itemView.setOnClickListener(this);
+            commonItemView = itemView.findViewById(R.id.common);
             commonItemView.setOnClickListener(this);
-            this.mAdapter = adapter;
         }
 
         /**
-         * When a common food item button is clicked,
-         * it is removed from the list of common food items to choose from
          *
-         * Additional onClick behavior is denoted in SecondActivity's onCreate method
+         * See onClick behavior deifined in SecondActivity's onCreate method
          * @param view
          */
         @Override
         public void onClick(View view) {
             listenerRef.get().onPositionClicked(getAdapterPosition());
-            int mPosition = getLayoutPosition();
-            String element = mList.remove(mPosition);
-            mAdapter.notifyItemRemoved(mPosition);
         }
     }
 }

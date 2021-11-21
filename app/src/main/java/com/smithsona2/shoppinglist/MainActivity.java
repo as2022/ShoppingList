@@ -16,6 +16,7 @@ import java.util.LinkedList;
 /**
  * This activity begins an empty shopping list that can be added to by
  * tapping the floating action button.
+ *
  */
 public class MainActivity extends AppCompatActivity {
 
@@ -37,13 +38,9 @@ public class MainActivity extends AppCompatActivity {
             startActivityForResult(intent, GROCERY_REQUEST);
         });
 
-        // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);
-        // Create an adapter and supply the data to be displayed.
         mAdapter = new ListAdapter(this, mGroceryList, null);
-        // Connect the adapter with the RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
-        // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 

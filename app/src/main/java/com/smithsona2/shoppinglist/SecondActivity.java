@@ -32,13 +32,15 @@ public class SecondActivity extends AppCompatActivity {
         if (mCommonList.size() < 1) {
             createCommonlist();
         }
-        // Get a handle to the RecyclerView.
         mRecyclerView = findViewById(R.id.recyclerview);
-        // Create an adapter and supply the data to be displayed.
+
         mAdapter = new ListAdapter(this, mCommonList, new ClickListener() {
             @Override
             public void onPositionClicked(int mPosition) {
                 String commonItem = mCommonList.get(mPosition);
+                mCommonList.remove(mPosition);
+                mAdapter.notifyItemRemoved(mPosition);
+
                 Intent returnIntent = new Intent();
                 returnIntent.putExtra(COMMON_ITEM, commonItem);
                 setResult(RESULT_OK, returnIntent);
@@ -50,9 +52,8 @@ public class SecondActivity extends AppCompatActivity {
             public void onLongClicked(int position) {
             }
         });
-        // Connect the adapter with the RecyclerView.
+
         mRecyclerView.setAdapter(mAdapter);
-        // Give the RecyclerView a default layout manager.
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 

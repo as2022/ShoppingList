@@ -16,6 +16,8 @@
 
         <Button
             android:id="@+id/common"
-            style="@style/common_item" />
+            style="@style/common_item"
+            app:backgroundTint="@color/fresh_green"
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
